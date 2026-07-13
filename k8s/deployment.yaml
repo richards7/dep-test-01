@@ -4,6 +4,11 @@ metadata:
   name: my-app
 spec:
   replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
   selector:
     matchLabels:
       app: my-app
@@ -15,5 +20,4 @@ spec:
       containers:
       - name: my-app
         image: testingacountwork/ci-cd-app:latest
-        ports:
-        - containerPort: 80
+        imagePullPolicy: Always
