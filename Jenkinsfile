@@ -1,4 +1,8 @@
-stage('Deploy') {
+pipeline {
+    agent any
+
+    stages {
+        stage('Deploy') {
     steps {
         withKubeConfig([credentialsId: 'minikube-config']) {
             script {
@@ -7,5 +11,7 @@ stage('Deploy') {
                 sh "kubectl rollout status deployment/my-app"
             }
         }
+    }
+}
     }
 }
